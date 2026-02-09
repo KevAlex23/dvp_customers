@@ -6,12 +6,14 @@ import 'package:dvp_customers/domain/repositories/customer_repository.dart';
 
 class CustomerRepositoryImp implements CustomerRepository {
   final CustomerDataSource customerDataSource;
-  CustomerRepositoryImp({required this.customerDataSource});
+  CustomerRepositoryImp({required this.customerDataSource}){
+    initDatabase();
+  }
 
   @override
-  Future<String?> initDatabase({String? path}) async {
+  Future<String?> initDatabase() async {
     try {
-      return await customerDataSource.initDatabase(path: path);
+      return await customerDataSource.initDatabase();
     } catch (e) {
       return e.toString();
     }

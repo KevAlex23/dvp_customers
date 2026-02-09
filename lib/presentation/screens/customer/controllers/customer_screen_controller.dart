@@ -18,7 +18,7 @@ class CustomerManagementController extends GetxController {
     return await customerUseCase.addCustomer(customer);
   }
 
-  Future? deleteCustomer(String customerId) async {
+  Future<String?> deleteCustomer(String customerId) async {
     final result = await customerUseCase.deleteCustomer(customerId);
     return result;
   }

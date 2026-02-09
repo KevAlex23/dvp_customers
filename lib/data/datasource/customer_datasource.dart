@@ -8,7 +8,7 @@ abstract class CustomerDataSource {
   Future<String?> saveAddress(AddressModel address, String customerId);
   Future<List<CustomerModel>> getCustomers();
   Future<List<AddressModel>> getAddressesByCustomer(String customerId);
-  Future<String?> initDatabase({String? path});
+  Future<String?> initDatabase();
   Future<String?> deleteDatabase();
   Future<String?> deleteAddress(String addressId, String customerId);
   Future<String?> deleteCustomer(String customerId);
@@ -20,14 +20,10 @@ class CustomerDataSourceImpl implements CustomerDataSource {
   CollectionBox? addressesBox;
 
   @override
-  Future<String?> initDatabase({String? path}) async {
-    dynamic applicationsDocumentDirectory;
-    if(path == null){
-      applicationsDocumentDirectory =
+  Future<String?> initDatabase() async {
+    final applicationsDocumentDirectory =
         await getApplicationDocumentsDirectory();
-    }
-    
-    var hiveBoxPath = path??'${applicationsDocumentDirectory.path}/';
+    var hiveBoxPath = '${applicationsDocumentDirectory.path}/';
     collection = await BoxCollection.open('database', {
       'customers',
       'address',

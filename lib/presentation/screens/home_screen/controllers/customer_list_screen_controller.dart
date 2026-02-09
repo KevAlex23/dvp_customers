@@ -24,14 +24,10 @@ class CustomerHomeScreenController extends GetxController {
     super.onReady();
     isLoading = true;
     update(["customers_list_view"]);
-    await initDatabase();
+    await Future.delayed(Duration(seconds: 1));
     await getAllCustomers();
     isLoading = false;
     update(["customers_list_view"]);
-  }
-
-  Future<String?> initDatabase() async {
-    return customerUseCase.initDatabase();
   }
 
   Future getAllCustomers() async {

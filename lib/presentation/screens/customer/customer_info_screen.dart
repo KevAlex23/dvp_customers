@@ -22,9 +22,33 @@ class CustomerInfoScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
+              Get.defaultDialog(
+                title: "Delete customer",
+                middleText: "Are you sure you want to delete this customer",
+                textConfirm: "Yes, delete",
+                textCancel: "Cancel",
+                onConfirm: () async {
+                  if (await Get.find<CustomerManagementController>().deleteCustomer(customer!.id) != null){
+                    Get.snackbar("Deleting customer", "Something was wrong deleting the customer ");
+                  }else{
+                    Get.back();
+                    Get.back();
+                  }
+                },
+              );
+            },
+            icon: Icon(
+              Icons.delete_forever_rounded,
+              color: context.theme.colorScheme.error,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
               Get.toNamed(RoutePages().customerManagementRoute)?.whenComplete(
                 () {
-                  Get.find<CustomerManagementController>().update(['customer_info_view']);
+                  Get.find<CustomerManagementController>().update([
+                    'customer_info_view',
+                  ]);
                 },
               );
             },
@@ -93,7 +117,7 @@ class CustomerInfoScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8.0),
                       Text(
-                        "${customer?.countryCode??"-"} ${customer?.phoneNumber ?? "-"}",
+                        "${customer?.countryCode ?? "-"} ${customer?.phoneNumber ?? "-"}",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.black.withValues(alpha: 0.7),
                         ),
@@ -112,8 +136,12 @@ class CustomerInfoScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                     ),
                     onTap: () {
-                      Get.toNamed(RoutePages().customerAddressesRoute)?.whenComplete((){
-                        Get.find<CustomerManagementController>().update(['customer_info_view']);
+                      Get.toNamed(
+                        RoutePages().customerAddressesRoute,
+                      )?.whenComplete(() {
+                        Get.find<CustomerManagementController>().update([
+                          'customer_info_view',
+                        ]);
                       });
                     },
                   ),

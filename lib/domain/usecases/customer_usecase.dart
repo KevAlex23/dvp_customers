@@ -6,10 +6,6 @@ class CustomerUseCase {
 
   CustomerUseCase(this.repository);
 
-  Future<String?> initDatabase({String? path}){
-    return repository.initDatabase(path: path);
-  }
-
   Future<List<Customer>?> getAllCustomers() async {
     final result = await repository.getAllCustomers();
     return result;

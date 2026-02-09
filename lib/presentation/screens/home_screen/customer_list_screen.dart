@@ -16,6 +16,7 @@ class CustomerListScreen extends StatelessWidget {
     final List<String> options = ['ASC', 'DESC'];
     return Scaffold(
       appBar: PreferredSize(
+        key: Key("home_appbar"),
         preferredSize: const Size.fromHeight(56.0),
         child: Container(
           decoration: BoxDecoration(
