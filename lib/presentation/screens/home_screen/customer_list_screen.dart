@@ -16,7 +16,6 @@ class CustomerListScreen extends StatelessWidget {
     final List<String> options = ['ASC', 'DESC'];
     return Scaffold(
       appBar: PreferredSize(
-        key: Key("home_appbar"),
         preferredSize: const Size.fromHeight(56.0),
         child: Container(
           decoration: BoxDecoration(
@@ -31,7 +30,8 @@ class CustomerListScreen extends StatelessWidget {
           ),
           child: AppBar(
             title: Text(
-              'Customers',
+              key: const ValueKey('text_appbar'),
+              "Customers",
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: Colors.white),
@@ -168,6 +168,7 @@ class CustomerListScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        key: Key('btn_add_customer'),
         onPressed: () {
           Get.toNamed(RoutePages().customerAddRoute)?.whenComplete(() async {
             await Future.delayed(const Duration(milliseconds: 500));

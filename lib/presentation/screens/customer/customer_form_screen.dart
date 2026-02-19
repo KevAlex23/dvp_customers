@@ -127,6 +127,7 @@ class CustomerFormScreen extends StatelessWidget {
         ),
         const SizedBox(height: 16.0),
         TextFormField(
+          key: Key('textfield_email_form'),
           controller: _emailController,
           decoration: InputDecoration(
             labelText: 'Email',

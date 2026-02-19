@@ -12,7 +12,9 @@ class EmptyListWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(Icons.line_axis_outlined, size: 50,),
-        Text("Oops! it's empty", style: context.textTheme.headlineMedium,),
+        Text(
+          key: Key("text_empty_list"),
+          "Oops! it's empty", style: context.textTheme.headlineMedium,),
         Text("Looks like you don't have anything in your list")
       ],
     ),);

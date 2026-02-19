@@ -83,6 +83,7 @@ class ClientFormScreen extends StatelessWidget {
                                   child: Container(
                                     margin: const EdgeInsets.only(top: 10, bottom: 10),
                                     child: ElevatedButton(
+                                      key: Key("btn_next_form"),
                                       onPressed: () {
                                         FocusManager.instance.primaryFocus
                                             ?.unfocus();
